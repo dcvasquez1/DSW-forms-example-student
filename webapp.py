@@ -8,11 +8,16 @@ def render_main():
 
 @app.route("/response")
 def render_response():
-   color = request.args['color']
-   if color == "blue":
-        reply = "Hey, that's my favorite color, too!"
-   else:
-        reply = "Are you kidding me " + color + "?! What a garbo color. Blue is clearly the best color"
+    color = request.args['color']
+    #The request object stores infor about the request sent to the server
+    #args is a "MultiDict" - a dictionary that can hold more than one value per key
+    #The information in args is visible in the url for the page being requested (ex. .../response?color=blue)
+
+    if color == "blue":
+        reply = "Nice! That's my favorite color, too!"
+    else:
+        reply = "Are you kidding me, " + color + "?! What a garbo color. Blue is clearly the best color"
+    return render_template('response.html', response = reply)
     
 if __name__=="__main__":
     app.run(debug=False, port=54321)
